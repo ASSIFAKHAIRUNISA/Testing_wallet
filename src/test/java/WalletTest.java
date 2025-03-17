@@ -126,6 +126,7 @@ public class WalletTest {
         assertEquals(100500, wallet.getTotalMoney(), "Total uang harus Rp 100.500 setelah penarikan");
     }
 
+    // memeriksa apakah transaksi gagal apabila menarik uang lebih dari saldo yang tersedia.
     @Test
     void testWithdrawExceedingBalance() {
         wallet.addCash(60000);
@@ -135,11 +136,13 @@ public class WalletTest {
         assertFalse(wallet.withdrawMoney(200000), "Harus gagal menarik lebih dari saldo");
     }
 
+    //  dijalankan setelah setiap pengujian
     @AfterEach
     void cleanupMethod() {
         System.out.println("Pengujian selesai, membersihkan...");
     }
 
+    //  dijalankan setelaah semua pengujian selesai
     @AfterAll
     static void cleanup() {
         wallet = null;
